@@ -16,9 +16,18 @@
             <a th:href="@{/memos}" class="btn btn-outline"><i class="ri-arrow-left-line"></i> 戻る</a>
         </div>
         <div class="note-card note-card-large">
-            <div class="note-card-header">
-                <h2 class="note-card-title" th:text="${memo.title}">タイトル</h2>
-            </div>
+			
+			<div class="note-card-header">
+			    <h2 class="note-card-title" th:text="${memo.title}">タイトル</h2>
+
+			    <span th:if="${memo.priority != null}"
+			          class="priority-pill"
+			          th:classappend="${memo.priority.name() == 'HIGH'} ? 'high' :
+			                         (${memo.priority.name() == 'MEDIUM'} ? 'medium' : 'low')"
+			          th:text="${memo.priority.label}">
+			    </span>
+			</div>
+
             <div class="note-card-content">
                 <p class="note-card-text" th:text="${memo.content}">本文</p>
             </div>

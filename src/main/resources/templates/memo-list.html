@@ -20,9 +20,16 @@
 
         <div class="notes-grid">
             <div class="note-card" th:each="memo : ${memos}">
-                <div class="note-card-header">
-                    <h3 class="note-card-title" th:text="${memo.title}">タイトル</h3>
-                </div>
+				<div class="note-card-header">
+				    <h3 class="note-card-title" th:text="${memo.title}">タイトル</h3>
+
+				    <span th:if="${memo.priority != null}"
+				          class="priority-pill"
+				          th:classappend="${memo.priority.name() == 'HIGH'} ? 'high' :
+				                         (${memo.priority.name() == 'MEDIUM'} ? 'medium' : 'low')"
+				          th:text="${memo.priority.label}">
+				    </span>
+				</div>
                 <div class="note-card-content">
                     <p class="note-card-text" th:text="${memo.content}">内容</p>
                 </div>
