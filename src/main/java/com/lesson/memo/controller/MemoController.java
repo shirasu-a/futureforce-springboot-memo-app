@@ -24,7 +24,7 @@ import com.lesson.memo.model.Priority;
 import com.lesson.memo.repository.MemoRepository;
 
 @Controller
-@RequestMapping("/memo")
+@RequestMapping("/memos")
 public class MemoController {
 
     @Autowired
@@ -59,7 +59,7 @@ public class MemoController {
         memo.setCreatedAt(LocalDateTime.now());
         memo.setUpdatedAt(LocalDateTime.now());
         memoRepository.save(memo);
-        return "redirect:/memo";
+        return "redirect:/memos";
     }
 
     @GetMapping("/detail/{id}")
@@ -112,7 +112,7 @@ public class MemoController {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.memo", result);
             redirectAttributes.addFlashAttribute("memo", memo);
-            return "redirect:/memo/edit/" + id; // editにリダイレクト
+            return "redirect:/memos/edit/" + id; // editにリダイレクト
         }
 
         memoToUpdate.setTitle(memo.getTitle());
@@ -121,7 +121,7 @@ public class MemoController {
         memoToUpdate.setUpdatedAt(LocalDateTime.now());
         memoRepository.save(memoToUpdate);
 
-        return "redirect:/memo/detail/" + id;
+        return "redirect:/memos/detail/" + id;
     }
 
     @GetMapping("/delete/{id}")
@@ -134,6 +134,6 @@ public class MemoController {
             return "not-found";
         }
 
-        return "redirect:/memo";
+        return "redirect:/memos";
     }
 }
