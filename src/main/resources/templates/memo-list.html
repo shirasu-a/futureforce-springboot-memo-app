@@ -18,6 +18,24 @@
             </a>
         </div>
 
+		
+		
+<form th:action="@{/memos/search}" method="get"
+      style="display: flex; gap: 10px; margin-bottom: 20px;">
+
+    <input type="text"
+           name="keyword"
+           th:value="${keyword}"
+           placeholder="検索キーワードを入力"
+           style="flex: 1; padding: 10px;">
+
+    <button type="submit" class="btn btn-primary">
+        検索
+    </button>
+
+</form>
+
+		
         <div class="notes-grid">
             <div class="note-card" th:each="memo : ${memos}">
 				<div class="note-card-header">
